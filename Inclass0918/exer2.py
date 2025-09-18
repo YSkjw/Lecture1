@@ -26,7 +26,17 @@ class F(B, E):
 class G(E, B):
     pass
 
-class H(G, F):
-    pass
+print(F.__mro__)
+print(G.__mro__)
+try:
+    class H(G, F):
+        pass
+except Exception as e:
+    print(e)
 
-print(H.__mro__)
+# F MRO: F, B, E, C, A, object
+# G MRO: G, E, C, B, A, object
+# MRO error occurs because Python cannot create a consistent method resolution order for H(G, F).
+
+
+
